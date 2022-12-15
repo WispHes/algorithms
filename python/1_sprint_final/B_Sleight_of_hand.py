@@ -21,38 +21,27 @@
 
 
 
-from typing import List, Tuple
+from typing import Dict
+ 
 
+def sleight_hand(numbers: str, buttons: int) -> int:
+    result = 0
+    numbers_dict: Dict[str, int] = {}
+    for number in numbers:
+        numbers_dict[number] = (
+            1 if number not in numbers_dict else numbers_dict[number] + 1
+        )
+    for number_dict in numbers_dict:
+        if numbers_dict[number_dict] <= buttons:
+            result += 1
+ 
+    return result
+ 
 
-def body_func(numbers: List[List[str]], n: int) -> None:
-    x = []
-    cou = 0
-    for i in numbers:
-        for j in i:
-            a = list(j)
-            x.extend(a)
-    y = list(map(str, set(x)))
-    if '.' in y:
-        y.remove('.')
-    for f in range(0, len(y)):
-        counter = 0
-        for g in range(0, len(x)):
-            if y[f] == x[g]:
-                counter += 1
-        if counter <= n*2:
-            cou += 1
-        counter = 0
-    print(cou)
-
-
-def read_input() -> Tuple[List[List[str]], int]:
-    n = int(input())
-    numbers = []
-    for _ in range(4):
-        numbers.append(input().strip().split())
-    return numbers, n
-
-
-numbers, n = read_input()
-
-body_func(numbers, n)
+if __name__ == '__main__':
+    # 79440955
+ 
+    buttons = int(input()) * 2
+    numbers = ''.join([input().replace('.', '') for _ in range(4)])
+    print(sleight_hand(numbers, buttons))
+ 

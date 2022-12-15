@@ -20,40 +20,32 @@
 
 
 
+from typing import List
+ 
 
-from typing import List, Tuple
+def near_zero(house_numbers: List[str]) -> List[int]:
+    result = [0] * len(house_numbers)
+    zero_house: List[int] = [
+        index_house
+        for index_house, house in enumerate(house_numbers)
+        if house == '0'
+    ]
+    for index in range(zero_house[0]):
+        result[index] = zero_house[0] - index
+    for index in range(len(zero_house) - 1):
+        for pos in range(zero_house[index] + 1, zero_house[index + 1]):
+            result[pos] = min(pos - zero_house[index],
+                              zero_house[index + 1] - pos)
+    for index in range(zero_house[-1] + 1, len(house_numbers)):
+        result[index] = index - zero_house[-1]
+ 
+    return result
+ 
 
+if __name__ == '__main__':
+    # 79434209
 
-def body_func(numbers: List[int], n: int) -> None:
-    index = None
-    for i, number in enumerate(numbers):
-        if number == 0:
-            index = i
-            numbers[i] = number
-        elif number != 0 and index is not None:
-            numbers[i] = i - index
-        else:
-            numbers[i] = n
-    index = None
-    for i, number in reversed(list(enumerate(numbers))):
-        if number == 0:
-            index = i
-        elif (
-                number != 0
-                and index is not None
-                and numbers[i] > index - i
-        ):
-            numbers[i] = index - i
+    _ = int(input())
+    house_numbers = input().split()
+    print(*near_zero(house_numbers))
 
-    print(' '.join(map(str, numbers)))
-
-
-def read_input() -> Tuple[List[int], int]:
-    n = int(input())
-    numbers = list(map(int, input().strip().split()))
-    return numbers, n
-
-
-numbers, n = read_input()
-
-body_func(numbers, n)

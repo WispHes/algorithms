@@ -21,34 +21,20 @@
 
 
 
-from typing import Tuple, Optional, List
+def two_items(items, true_item):
+    for left in range(0, len(items)):
+        for rigth in range(left+1, len(items)):
+            if items[left] + items[rigth] == true_item:
+                return items[left], items[rigth]
+
+    return 'None',
 
 
-def two_sum(arr: List[int], target_sum: int) -> Optional[Tuple[int, int]]:
-    result = []
-    for i in range(0, len(arr)):
-        for j in range(i+1, len(arr)):
-            if arr[i] + arr[j] == target_sum:
-                result.append(arr[i])
-                result.append(arr[j])
-                return result
-    else:
-        return result
-
-
-def read_input() -> Tuple[List[int], int]:
-    n = int(input())
-    arr = list(map(int, input().strip().split()))
-    target_sum = int(input())
-    return arr, target_sum
-
-
-def print_result(result: Optional[Tuple[int, int]]) -> None:
-    if result == []:
-        print(None)
-    else:
-        print(' '.join(map(str, result)))
-
-
-arr, target_sum = read_input()
-print_result(two_sum(arr, target_sum))
+if __name__ == '__main__':
+    _ = int(input())
+    print(
+        *two_items(
+            [int(item) for item in input().split()],
+            int(input())
+        )
+    )

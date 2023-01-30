@@ -14,27 +14,17 @@
 from typing import List
 
 
-def body_func(numbers: List[int]) -> None:
-    even_numbers = []
-    odd_numbers = []
-    for number in numbers:
-        if number % 2 == 0:
-            even_numbers.append(number)
+def even_and_odd(items: List[int]) -> str:
+    even, odd = 0, 0
+    for num in items:
+        if num % 2 == 0:
+            even += 1
         else:
-            odd_numbers.append(number)
-    if len(even_numbers) == 3:
-        print('WIN')
-    elif len(odd_numbers) == 3:
-        print('WIN')
-    else:
-        print('FAIL')
+            odd += 1
+    if even == 3 or odd == 3:
+        return 'WIN'
+    return 'FAIL'
 
 
-def read_input() -> List[int]:
-    numbers = list(map(int, input().strip().split()))
-    return numbers
-
-
-numbers = read_input()
-
-body_func(numbers)
+if __name__ == '__main__':
+    print(even_and_odd([int(item) for item in input().split()]))

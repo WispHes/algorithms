@@ -15,24 +15,12 @@
 from typing import List
 
 
-def function_values(numbers: List[int]) -> int:
-    a = numbers[0]
-    x = numbers[1]
-    b = numbers[2]
-    c = numbers[3]
-    y = a*x**2+b*x+c
-    return y
+def fun_values(items: List[int]) -> int:
+    degree = 2
+    return (
+        items[0]*items[1]**degree+items[2]*items[1]+items[3]
+    )
 
 
-def read_input() -> List[int]:
-    numbers = list(map(int, input().strip().split()))
-    return numbers
-
-
-def print_result(y: int) -> None:
-    print(y)
-
-
-numbers = read_input()
-
-print_result(function_values(numbers))
+if __name__ == '__main__':
+    print(fun_values([int(item) for item in input().split()]))

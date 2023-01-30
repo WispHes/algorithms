@@ -18,34 +18,26 @@
 Выведите единственное число — хаотичность за данный период.
 
 
-from typing import List, Tuple
+from typing import List
 
 
-def body_func(n: int, temperatures: List[int]) -> None:
-    result = 0
-    if n == 1:
-        result += 1
-    else:
-        for temperature in range(1, n-1):
-            if (
-                temperatures[temperature-1]
-                < temperatures[temperature]
-                > temperatures[temperature+1]
-            ):
-                result += 1
-        if temperatures[0] > temperatures[1]:
-            result += 1
-        if temperatures[-1] > temperatures[-2]:
-            result += 1
-    print(result)
+def сhaotic_weather(days: int, items: List[int]) -> int:
+    count_of_chaotic = 0
+    if days == 1:
+        return 1
+    if items[-1] > items[-2]:
+        count_of_chaotic += 1
+    if items[0] > items[1]:
+        count_of_chaotic += 1
+    for index in range(1, days - 1):
+        if items[index-1] < items[index] > items[index+1]:
+            count_of_chaotic += 1
+    return count_of_chaotic
 
 
-def read_input() -> Tuple[int, List[int]]:
-    n = int(input())
-    temperatures = list(map(int, input().strip().split()))
-    return n, temperatures
-
-
-n, temperatures = read_input()
-
-body_func(n, temperatures)
+if __name__ == '__main__':
+    print(сhaotic_weather(
+            int(input()),
+            [int(item) for item in input().split()]
+        )
+    )

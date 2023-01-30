@@ -12,3 +12,43 @@
 
 Формат вывода
 Напечатайте нужные числа в возрастающем порядке через пробел.
+
+
+from typing import List, Union
+
+
+def neighbors(
+    arr: List[List[str]],
+    os_y: int,
+    os_x: int,
+    y_len: int,
+    x_len: int
+) -> Union[List[int], str]:
+    result = []
+    if os_y + 1 <= y_len:
+        result.append(int(arr[os_y+1][os_x]))
+    if os_y - 1 >= 0:
+        result.append(int(arr[os_y-1][os_x]))
+    if os_x + 1 <= x_len:
+        result.append(int(arr[os_y][os_x+1]))
+    if os_x - 1 >= 0:
+        result.append(int(arr[os_y][os_x-1]))
+
+    return sorted(result)
+
+
+if __name__ == '__main__':
+    try:
+        y_len = int(input())
+        x_len = int(input())
+        print(
+            *neighbors(
+                [input().split() for _ in range(y_len)],
+                int(input()),
+                int(input()),
+                y_len-1,
+                x_len-1
+            )
+        )
+    except Exception:
+        print('')

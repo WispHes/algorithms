@@ -17,20 +17,17 @@
 
 
 
-from typing import List, Tuple
+from typing import List
 
-def zipper(a: List[int], b: List[int]) -> List[int]:
-    char = []
-    for i in list(zip(a,b)):
-        for j in i:
-            char.append(str(j))
-    return char
 
-def read_input() -> Tuple[List[int], List[int]]:
-    n = int(input())
-    a = list(map(int, input().strip().split()))
-    b = list(map(int, input().strip().split()))
-    return a, b
+def zipper_closure(first: List[str], second: List[str]) -> List[str]:
+    result: List[str] = []
+    for index in range(0, len(first)):
+        result.append(first[index])
+        result.append(second[index])
+    return result
 
-a, b = read_input()
-print(' '.join(zipper(a, b)))
+
+if __name__ == '__main__':
+    _: int = int(input())
+    print(*zipper_closure(input().split(), input().split()))

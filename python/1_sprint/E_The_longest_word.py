@@ -20,19 +20,14 @@
 
 
 
-def body_func(line: str) -> str:
-    max_line = max(line.split(), key=len)
-    return max_line
+from typing import List, Tuple
 
 
-def read_input() -> str:
-    n = int(input())
-    line = input().strip()
-    return line
+def longest_word(items: List[str]) -> Tuple[str, int]:
+    max_item = max(items, key=len)
+    return max_item, len(max_item)
 
 
-def print_result(max_line: str,) -> None:
-    print(max_line, len(max_line), sep='\n')
-
-
-print_result(body_func(read_input()))
+if __name__ == '__main__':
+    _ = int(input())
+    print(*longest_word(input().split()), sep='\n')

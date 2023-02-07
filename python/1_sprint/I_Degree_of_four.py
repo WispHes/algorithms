@@ -10,21 +10,13 @@
 
 
 
-def body_func(number: int) -> bool:
-    x = float(number)
-    while x >= 1:
-        if x == 1:
-            return True
-        elif x % 4 == 0:
-            x = x / 4
-        else:
-            return False
-    return True
+def degree_four(number: int) -> str:
+    while number > 1:
+        if number % 4 != 0:
+            return 'False'
+        number = number // 4
+    return 'True'
 
 
-def read_input() -> int:
-    number = int(input().strip())
-    return number
-
-
-print(body_func(read_input()))
+if __name__ == '__main__':
+    print(degree_four(int(input())))

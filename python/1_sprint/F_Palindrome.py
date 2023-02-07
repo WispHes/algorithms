@@ -11,25 +11,12 @@
 Выведите «True», если фраза является палиндромом, и «False», если не является.
 
 
-import re
+from re import sub
 
 
-def body_func(line: str) -> str:
-    out = re.sub(r'[^\w\s]', '', line)
-    result = ''.join(out.split())
-    return result
+def palindrome(items: str) -> bool:
+    return items == items[::-1]
 
 
-def read_input() -> str:
-    line = input().strip().lower()
-    return line
-
-
-def print_result(result: str) -> None:
-    if result[::-1] == result:
-        print(True)
-    else:
-        print(False)
-
-
-print_result(body_func(read_input()))
+if __name__ == '__main__':
+    print(palindrome(sub('[^a-zA-Z_0-9]', '', input().lower())))

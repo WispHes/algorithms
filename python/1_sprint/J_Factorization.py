@@ -31,5 +31,3 @@ def factorization(n):
 
 if __name__ == '__main__':
     factorization(int(input()))
-
-

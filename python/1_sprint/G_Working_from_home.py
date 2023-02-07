@@ -12,31 +12,22 @@
 Выведите двоичное представление этого числа.
 
 
+from typing import Union
 
-from typing import List
 
-
-def body_func(number: int) -> List[str]:
-    result = []
+def work_in_hone(number: int) -> Union[int, str]:
+    result = ''
     if number == 0:
-        result.append('0')
-    else:
-        while number >= 1:
-            if number % 2 == 1:
-                result.insert(0, '1')
-            else:
-                result.insert(0, '0')
-            number = number // 2
-    return result
+        return 0
+    while number >= 1:
+        if number % 2 != 0:
+            result += '1'
+        else:
+            result += '0'
+        number = number // 2
+
+    return result[::-1]
 
 
-def read_input() -> int:
-    number = int(input())
-    return number
-
-
-def print_result(result: List[str]) -> None:
-    print(''.join(result))
-
-
-print_result(body_func(read_input()))
+if __name__ == '__main__':
+    print(work_in_hone(int(input())))

@@ -11,26 +11,16 @@
 Выведите лишнюю букву.
 
 
+def extra_letter(first_str, second_str):
+    for char in second_str:
+        if char in first_str:
+            second_str = second_str.replace(char, '', 1)
+            first_str = first_str.replace(char, '', 1)
 
-from typing import List, Tuple
-
-
-def body_func(first_str: List[str], second_str: List[str]) -> None:
-    for i in range(0, len(second_str)):
-        try:
-            if second_str[i] != first_str[i]:
-                print(second_str[i])
-                break
-        except Exception:
-            print(second_str[-1])
+    return second_str
 
 
-def read_iput() -> Tuple[List[str], List[str]]:
-    first_str = list(sorted(input().strip()))
-    second_str = list(sorted(input().strip()))
-    return first_str, second_str
-
-
-first_str, second_str = read_iput()
-
-body_func(first_str, second_str)
+if __name__ == '__main__':
+    print(
+        extra_letter(input(), input())
+    )

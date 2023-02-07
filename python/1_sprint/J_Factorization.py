@@ -14,6 +14,22 @@
 Выведите в порядке неубывания простые множители, на которые раскладывается число n.
 
 
+def factorization(n):
+    i = 2
+    ans = []
+    while i*i <= n:
+        if n % i == 0:
+            n = n // i
+            ans.append(i)
+        else:
+            i += 1
+    if n > 1:
+        ans.append(n)
 
+    print(*ans)
+
+
+if __name__ == '__main__':
+    factorization(int(input()))
 
 

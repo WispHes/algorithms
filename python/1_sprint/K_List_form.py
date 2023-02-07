@@ -18,25 +18,16 @@
 
 
 
-from typing import Tuple
+def form_list(first_num, second_num):
+    result = [item for item in (str(first_num + second_num))]
+    return result
 
 
-def body_func(number_list: int, k: int) -> str:
-    result = number_list + k
-    return str(result)
-
-
-def read_input() -> Tuple[int, int]:
-    n = int(input())
-    number_list = int(''.join(input().strip().split()))
-    k = int(input())
-    return number_list, k
-
-
-def print_result(result: str) -> None:
-    print(' '.join(list(result)))
-
-
-number_list, k = read_input()
-
-print_result(body_func(number_list, k))
+if __name__ == '__main__':
+    _ = int(input())
+    print(
+        *form_list(
+            int(''.join([item for item in input().split()])),
+            int(input())
+        )
+    )
